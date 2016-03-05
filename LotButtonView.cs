@@ -17,7 +17,7 @@ namespace Community{
         
         public void Click(){
 			Debug.Log ("Lot clicked!");
-			LotView.clearLot();
+			LotView.changeCamera();
         }
         
         public void autoAssignLotViews(){

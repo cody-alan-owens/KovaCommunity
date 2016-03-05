@@ -13,12 +13,16 @@ namespace Community{
 		private Community Community;
 		public string CommunityRID;
 		public GameObject Models;
+        public string AuthToken;
 
         void Start()
         {
 			string GetCommunityURL = "http://oakwoodfindahome.com/WebConfigurator/api/v2/Communities/GetDetails/"+CommunityRID;
+            if(AuthToken!=String.Empty){GetCommunityURL = GetCommunityURL+"?auth="+AuthToken;}
 			string GetLotsURL = "http://oakwoodfindahome.com/WebConfigurator/api/v2/Communities/GetLots/"+CommunityRID;
+            if(AuthToken!=String.Empty){GetLotsURL = GetLotsURL+"?auth="+AuthToken;}
 			string GetModelsURL = "http://oakwoodfindahome.com/WebConfigurator/api/v2/Communities/GetModels/"+CommunityRID;
+            if(AuthToken!=String.Empty){GetModelsURL = GetModelsURL+"?auth="+AuthToken;}
 
 			Debug.Log ("Community URL: "+GetCommunityURL);
 			Debug.Log ("Lots URL: "+GetLotsURL);
@@ -57,6 +61,9 @@ namespace Community{
 		}
 		
 		private void convertResponses(string community, string lotArr, string modelArr){
+            Debug.Log("Community JSON: "+community);
+            Debug.Log("Lot JSON: "+lotArr);
+            Debug.Log("Model JSON: "+modelArr);
 			Community communityTemp = JsonConvert.DeserializeObject<Community>(community);
 			Lot[] lotArrTemp = JsonConvert.DeserializeObject<Lot[]>(lotArr);
 			Model[] modelArrTemp = JsonConvert.DeserializeObject<Model[]>(modelArr);

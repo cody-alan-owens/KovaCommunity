@@ -18,6 +18,7 @@ namespace Community{
 		}
 
 		void tryClick(){
+			Debug.Log ("Click detected.");
 			Ray ray = OverviewCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit[] hits = Physics.RaycastAll(ray);
 			foreach(RaycastHit hit in hits){

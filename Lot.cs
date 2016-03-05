@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEngine;
 
 namespace Community{
     
@@ -21,6 +22,12 @@ namespace Community{
 		public Model[] AvailableModels { get; set; }
 		public Model Model { get; set; }
 		public LotView LotView;
+		public enum DisplayType{
+			MODEL,
+			SOLD,
+			SPEC,
+			NEW
+		}
 
 		public Lot(){
 
@@ -32,6 +39,25 @@ namespace Community{
 			}
 		}
 
-
+		public DisplayType getDisplayType(){
+			switch(this.Status){
+			case "Sold":
+				return DisplayType.SOLD;
+			case "Hold":
+				return DisplayType.SPEC;
+			case "Void":
+				return DisplayType.NEW;
+			case "Closed":
+				return DisplayType.SPEC;
+			case "New":
+				if(this.Type == "Model"){
+					return DisplayType.MODEL;
+				}
+				return DisplayType.NEW;
+			case "Released":
+				return DisplayType.NEW;
+			}
+			return DisplayType.NEW;
+		}			
     }
 }

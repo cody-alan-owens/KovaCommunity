@@ -7,8 +7,6 @@ namespace Community{
     
     class ModelView : MonoBehaviour
     {
-        public GameObject ModelObj;
-		public string ModelRID;
 
         void Start()
         {
@@ -21,8 +19,8 @@ namespace Community{
         }
 
 		public GameObject getCopy(){
-			Debug.Log ("Instanting "+ModelRID+" object...");
-			return Instantiate(ModelObj);
+			Debug.Log ("Instanting "+gameObject.name+" object...");
+			return Instantiate(gameObject);
 		}
     }
 }
